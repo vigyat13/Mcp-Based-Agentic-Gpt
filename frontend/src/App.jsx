@@ -6,7 +6,7 @@ import {
   Image as ImageIcon, Link2
 } from "lucide-react";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "https://mcp-based-agentic-gpt.onrender.com";
 
 export default function MCPAgenticChat() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
