@@ -48,6 +48,6 @@ End-to-end view of the MCP-based agentic system, showing the separation between 
 ![Structured Output](https://github.com/vigyat13/Mcp-Based-Agentic-Gpt/blob/main/Login.png)
 
 
-![Structured Output](https://github.com/vigyat13/Mcp-Based-Agentic-Gpt/blob/main/Login.png)
+![Structured Output](https://github.com/vigyat13/Mcp-Based-Agentic-Gpt/blob/main/Tools.png)
 
 
