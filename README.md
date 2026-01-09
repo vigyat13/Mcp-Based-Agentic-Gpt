@@ -7,24 +7,17 @@ This system demonstrates how Large Language Models (LLMs) can safely and reliabl
 
 🔐 Key Design Decisions (Why This Matters)
 Two-Phase LLM Execution
-
 Phase 1: LLM decides which tool to call
-
 Phase 2: Tool executes → real data → fed back to LLM
 
-Result:
-No hallucinated tool outputs. The model can’t fake data it hasn’t seen.
-If a tool fails, the agent adapts instead of lying
+🛠️ Why Model Context Protocol (MCP)?
+We chose an MCP-based architecture over standard hard-coded function calling for three strategic reasons:
 
-🧰 Implemented Tools
-Tool Name	Description	Example Use Case
-web_search	Google Serper real-time search	Latest RTX specs
-news_search	GNews aggregation	Market analysis
-image_search	Image retrieval	Architecture diagrams
-youtube_search	Video discovery	Async Python tutorials
-fetch_webpage	URL scraping + text extraction	Read docs
-save_memory	Persist facts/preferences	Save deadlines
-recall_memory	Retrieve long-term memory	Recall past info
+Standardization & Portability: Instead of writing custom integration code for every new tool, MCP provides a universal contract. This means the same "News Search" tool definition can be theoretically plugged into different LLM providers (OpenAI, Anthropic, Mistral) without rewriting the backend logic.
+
+Reduced Hallucination & Reliability: MCP enforces strict schema validation. By explicitly defining tool capabilities and return types, we significantly reduce the chance of the model "hallucinating" parameters or attempting to call non-existent functions. The model knows exactly what it can do and how to do it.
+
+Scalability & Modularity: In a monolithic app, adding a new tool requires touching the core agent logic. With MCP, tools are registered modules. You can add 50 new tools (GitHub integration, Slack alerts, CRM lookup) simply by registering them in the MCPServer class, keeping the core cognitive loop clean and lightweight.
 
 🖼️ System Visuals & Screenshots
 1️⃣ High-Level System Architecture
@@ -55,11 +48,6 @@ End-to-end view of the MCP-based agentic system, showing the separation between 
 ![Structured Output](https://github.com/vigyat13/Mcp-Based-Agentic-Gpt/blob/main/Login.png)
 
 
+![Structured Output](https://github.com/vigyat13/Mcp-Based-Agentic-Gpt/blob/main/Login.png)
 
-
-6️⃣ Long-Term Memory (Supabase)
-
-Persistent memory and chat history stored in Supabase.
-
-![Supabase Memory](docs/images/supabase-memory.png)
 
